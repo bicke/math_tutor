@@ -6,9 +6,37 @@
     <title>さくら先生の個別カリキュラム学習システム</title>
     <meta name="robots" content="noindex,nofollow">
     <style>
-        /* 既存のCSSはそのまま保持 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Hiragino Sans', 'ヒラギノ角ゴシック', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            color: #4CAF50;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
         
-        /* 認証画面用の追加CSS */
+        /* 認証画面用のCSS */
         .auth-overlay {
             position: fixed;
             top: 0;
@@ -21,7 +49,6 @@
             justify-content: center;
             z-index: 10000;
         }
-        
         .auth-container {
             background: white;
             padding: 40px;
@@ -31,13 +58,11 @@
             max-width: 400px;
             width: 90%;
         }
-        
         .auth-container h2 {
             color: #4CAF50;
             margin-bottom: 30px;
             font-size: 2em;
         }
-        
         .auth-input {
             width: 100%;
             padding: 15px;
@@ -47,7 +72,6 @@
             margin: 15px 0;
             box-sizing: border-box;
         }
-        
         .auth-button {
             background: #4CAF50;
             color: white;
@@ -60,16 +84,13 @@
             margin-top: 20px;
             transition: background-color 0.3s;
         }
-        
         .auth-button:hover {
             background: #45a049;
         }
-        
         .auth-button:disabled {
             background: #cccccc;
             cursor: not-allowed;
         }
-        
         .auth-error {
             color: #f44336;
             margin-top: 15px;
@@ -79,14 +100,13 @@
             border-radius: 5px;
         }
         
+        /* メインコンテンツのCSS */
         .main-content {
             display: none;
         }
-        
         .main-content.authenticated {
             display: block;
         }
-        
         .logout-button {
             background: #ff9800;
             color: white;
@@ -97,9 +117,192 @@
             font-size: 14px;
             margin-left: 10px;
         }
-        
         .logout-button:hover {
             background: #f57c00;
+        }
+        .status-banner {
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 25px 0;
+            font-weight: bold;
+        }
+        
+        /* カリキュラム設定のCSS */
+        .curriculum-setup {
+            background: linear-gradient(135deg, #e8f5e8, #f1f8e9);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 25px 0;
+            border-left: 5px solid #4CAF50;
+        }
+        .form-group {
+            margin: 20px 0;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #2e7d32;
+        }
+        .form-group select, .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s;
+            margin: 5px;
+        }
+        .btn-primary { 
+            background: #4CAF50; 
+            color: white; 
+        }
+        .btn-secondary { 
+            background: #2196F3; 
+            color: white; 
+        }
+        .btn:hover { 
+            transform: translateY(-2px); 
+        }
+        
+        /* 学習ダッシュボードのCSS */
+        .study-dashboard {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+            margin: 25px 0;
+        }
+        .progress-panel {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+        }
+        .current-lesson {
+            background: linear-gradient(45deg, #2196F3, #1976D2);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .problem-area {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        /* バーチャルヒューマンのCSS */
+        .avatar-container {
+            background: #f8f9fa;
+            border-radius: 20px;
+            padding: 25px;
+            margin: 25px 0;
+            text-align: center;
+        }
+        .avatar-container iframe {
+            width: 100%;
+            max-width: 800px;
+            height: 600px;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        /* 画像アップロードのCSS */
+        .upload-section {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            padding: 25px;
+            border-radius: 20px;
+            margin: 25px 0;
+            border-left: 5px solid #ff9800;
+        }
+        .upload-area {
+            border: 3px dashed #ff9800;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            background: white;
+            margin: 15px 0;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .upload-area:hover {
+            border-color: #f57c00;
+            background: #fff3e0;
+        }
+        .file-input {
+            display: none;
+        }
+        .upload-button {
+            background: #ff9800;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        .preview-container {
+            margin: 20px 0;
+            text-align: center;
+            display: none;
+        }
+        .preview-image {
+            max-width: 100%;
+            max-height: 400px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .loading-spinner {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #4CAF50;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .analysis-result {
+            background: #e8f5e8;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border-left: 4px solid #4CAF50;
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                margin: 10px;
+            }
+            .header h1 {
+                font-size: 2em;
+            }
+            .study-dashboard {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -134,7 +337,6 @@
 
     <!-- メインコンテンツ（認証後に表示） -->
     <div class="main-content" id="mainContent">
-        <!-- 既存のHTMLコンテンツをここに移動 -->
         <div class="container">
             <div class="header">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
@@ -147,27 +349,177 @@
                     </button>
                 </div>
             </div>
-            
-            <!-- 既存のコンテンツ（カリキュラム設定、学習ダッシュボード、バーチャルヒューマン、画像アップロードセクション）をここに配置 -->
-            <!-- 既存のindex.htmlの内容をそのまま貼り付け -->
+
+            <div class="status-banner">
+                🎉 お子様専用のAI学習システムへようこそ！まずはカリキュラムを作成しましょう
+            </div>
+
+            <!-- カリキュラム設定セクション -->
+            <div class="curriculum-setup">
+                <h2>📋 あなた専用カリキュラムを作成しましょう</h2>
+                
+                <div class="form-group">
+                    <label for="studentGrade">現在の学年</label>
+                    <select id="studentGrade">
+                        <option value="中学1年">中学1年</option>
+                        <option value="中学2年">中学2年</option>
+                        <option value="中学3年">中学3年</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="currentLevel">数学の理解度</label>
+                    <select id="currentLevel">
+                        <option value="30">小学校の内容から不安（偏差値30程度）</option>
+                        <option value="40" selected>基礎からしっかり学びたい（偏差値40程度）</option>
+                        <option value="50">標準的な問題は解ける（偏差値50程度）</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="learningGoal">学習目標</label>
+                    <select id="learningGoal">
+                        <option value="基礎学力向上">まずは基礎をしっかり固めたい</option>
+                        <option value="定期テスト対策">定期テストで点数を上げたい</option>
+                        <option value="高校受験準備">高校受験に向けて準備したい</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="dailyTime">1日の学習時間</label>
+                    <select id="dailyTime">
+                        <option value="20">20分（短時間集中）</option>
+                        <option value="30" selected>30分（標準）</option>
+                        <option value="45">45分（しっかり学習）</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="weakAreas">特に苦手な分野</label>
+                    <textarea id="weakAreas" rows="3" placeholder="例：分数の計算、方程式、図形など"></textarea>
+                </div>
+
+                <button class="btn btn-primary" onclick="createCurriculum()" style="width: 100%; font-size: 18px; padding: 15px;">
+                    🎯 私専用のカリキュラムを作成する
+                </button>
+
+                <div id="curriculumResult" style="margin-top: 30px; display: none;">
+                    <h3>📅 あなた専用カリキュラム</h3>
+                    <div id="curriculumDisplay"></div>
+                </div>
+            </div>
+
+            <!-- 学習ダッシュボード -->
+            <div class="study-dashboard" id="studyDashboard" style="display: none;">
+                <div class="progress-panel">
+                    <div class="current-lesson">
+                        <h3 id="currentLessonTitle">今日の学習</h3>
+                        <p id="currentLessonDesc">カリキュラムを設定してください</p>
+                    </div>
+                    
+                    <div>
+                        <h4>📈 学習進捗</h4>
+                        <div style="background: #e9ecef; height: 20px; border-radius: 10px; margin: 15px 0;">
+                            <div id="progressBar" style="background: linear-gradient(45deg, #4CAF50, #45a049); height: 100%; width: 0%; border-radius: 10px; transition: width 0.3s;"></div>
+                        </div>
+                        <p id="progressText">0% 完了</p>
+                    </div>
+
+                    <div style="margin-top: 20px;">
+                        <h4>🏆 学習統計</h4>
+                        <p>今週の問題数: <span id="weeklyProblems">0</span>問</p>
+                        <p>正解率: <span id="accuracyRate">0</span>%</p>
+                        <p>学習時間: <span id="studyTime">0</span>分</p>
+                    </div>
+                </div>
+
+                <div class="problem-area">
+                    <div id="problemContainer">
+                        <div style="text-align: center; padding: 40px;">
+                            <h3>📚 学習準備完了</h3>
+                            <p>カリキュラムに沿って問題を出題します</p>
+                            <button class="btn btn-primary" onclick="startLearning()">📝 学習を開始</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- バーチャルヒューマンセクション -->
+            <div class="avatar-container">
+                <h3>🤖 さくら先生と学習相談</h3>
+                <p>カリキュラムや問題について音声で相談してください</p>
+                
+                <!-- HeyGenの埋め込みコードをここに貼り付け -->
+                <div style="background: #f0f0f0; padding: 40px; border-radius: 15px; margin: 20px 0;">
+                    <h4>🔧 設定待ち</h4>
+                    <p>HeyGenバーチャルヒューマンの埋め込みコードを設定してください</p>
+                    <p style="font-size: 0.9em; color: #666; margin-top: 10px;">
+                        この部分にHeyGenのiframe埋め込みコードが表示されます
+                    </p>
+                </div>
+            </div>
+
+            <!-- 画像アップロードセクション -->
+            <div class="upload-section">
+                <h3>📸 プリント・ノート画像アップロード</h3>
+                <p>宿題のプリントやノートを撮影してアップロードすると、さくら先生がヒントを教えてくれます</p>
+                
+                <div class="upload-area" id="uploadArea">
+                    <h4>📂 画像をここにドラッグ＆ドロップ</h4>
+                    <p>または下のボタンをクリックしてファイルを選択</p>
+                    <button class="upload-button" onclick="document.getElementById('fileInput').click()">
+                        📸 画像を選択
+                    </button>
+                    <input type="file" id="fileInput" class="file-input" accept="image/*" onchange="handleFileSelect(event)">
+                </div>
+
+                <div class="preview-container" id="previewContainer">
+                    <h4>アップロードされた画像：</h4>
+                    <img id="previewImage" class="preview-image" alt="アップロード画像">
+                    <br>
+                    <button class="upload-button" onclick="analyzeImage()">🔍 さくら先生に解析してもらう</button>
+                </div>
+
+                <div class="loading-spinner" id="loadingSpinner">
+                    <div class="spinner"></div>
+                    <p>さくら先生が画像を解析しています...</p>
+                </div>
+
+                <div class="analysis-result" id="analysisResult">
+                    <h3>📝 さくら先生からのヒント</h3>
+                    <div id="problemsContainer"></div>
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
-        // 認証関連のJavaScript
+        // 認証関連の変数
         let isAuthenticated = false;
         let authToken = null;
+        
+        // 学習システム関連の変数
+        let currentCurriculum = null;
+        let currentWeek = 1;
+        let currentProblem = null;
+        let currentImageData = null;
+        let learningProgress = {
+            totalProblems: 0,
+            correctAnswers: 0,
+            weeklyTime: 0,
+            currentUnit: ''
+        };
 
-        // ページ読み込み時の認証状態チェック
+        // ページ読み込み時の初期化
         window.addEventListener('load', function() {
             checkAuthStatus();
         });
 
+        // 認証状態チェック
         function checkAuthStatus() {
             const storedToken = localStorage.getItem('sakura_auth_token');
             const authTime = localStorage.getItem('sakura_auth_time');
             
-            // 24時間以内の認証は有効とする
             if (storedToken && authTime && (Date.now() - parseInt(authTime)) < 24 * 60 * 60 * 1000) {
                 authToken = storedToken;
                 showMainContent();
@@ -176,6 +528,7 @@
             }
         }
 
+        // 認証処理
         function handleAuthKeyPress(event) {
             if (event.key === 'Enter') {
                 authenticate();
@@ -192,7 +545,6 @@
                 return;
             }
 
-            // ボタンを無効化してローディング状態に
             loginButton.disabled = true;
             loginButton.textContent = '認証中...';
 
@@ -206,7 +558,6 @@
                 const result = await response.json();
                 
                 if (result.success) {
-                    // 認証成功
                     authToken = result.token;
                     localStorage.setItem('sakura_auth_token', authToken);
                     localStorage.setItem('sakura_auth_time', Date.now().toString());
@@ -218,7 +569,6 @@
                 console.error('Authentication error:', error);
                 showAuthError('認証中にエラーが発生しました。もう一度お試しください。');
             } finally {
-                // ボタンを元に戻す
                 loginButton.disabled = false;
                 loginButton.textContent = '🔓 ログイン';
             }
@@ -228,12 +578,8 @@
             const errorDiv = document.getElementById('authError');
             errorDiv.textContent = message;
             errorDiv.style.display = 'block';
-            
-            // パスワード入力欄をクリア
             document.getElementById('passwordInput').value = '';
             document.getElementById('passwordInput').focus();
-            
-            // 3秒後にエラーメッセージを非表示
             setTimeout(() => {
                 errorDiv.style.display = 'none';
             }, 3000);
@@ -267,13 +613,11 @@
         // APIアクセス時の認証チェック機能を追加
         const originalFetch = window.fetch;
         window.fetch = function(url, options = {}) {
-            // 認証が必要なAPIエンドポイントの場合
             if (typeof url === 'string' && url.startsWith('/api/') && url !== '/api/auth') {
                 if (!isAuthenticated || !authToken) {
                     return Promise.reject(new Error('認証が必要です'));
                 }
                 
-                // 認証トークンをヘッダーに追加
                 options.headers = {
                     ...options.headers,
                     'Authorization': `Bearer ${authToken}`
@@ -283,8 +627,226 @@
             return originalFetch.call(this, url, options);
         };
 
-        // 既存のJavaScriptコード（カリキュラム生成、問題生成等）をここに配置
-        // ... 既存の関数群をそのまま貼り付け ...
+        // カリキュラム生成機能
+        async function createCurriculum() {
+            const studentProfile = {
+                grade: document.getElementById('studentGrade').value,
+                level: document.getElementById('currentLevel').value,
+                weakAreas: document.getElementById('weakAreas').value.split('、').filter(area => area.trim())
+            };
+
+            const learningGoals = {
+                target: document.getElementById('learningGoal').value,
+                dailyTime: parseInt(document.getElementById('dailyTime').value)
+            };
+
+            try {
+                showLoading('カリキュラムを作成中...');
+                
+                const response = await fetch('/api/curriculum-generator', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        studentProfile: studentProfile,
+                        learningGoals: learningGoals,
+                        timeframe: 12
+                    })
+                });
+
+                const result = await response.json();
+                
+                if (result.success) {
+                    currentCurriculum = result.curriculum;
+                    displayCurriculum(result.curriculum);
+                    document.getElementById('curriculumResult').style.display = 'block';
+                    document.getElementById('studyDashboard').style.display = 'grid';
+                    
+                    if (result.curriculum.weekly_schedule && result.curriculum.weekly_schedule.length > 0) {
+                        const firstWeek = result.curriculum.weekly_schedule[0];
+                        document.getElementById('currentLessonTitle').textContent = `第${firstWeek.week}週: ${firstWeek.unit}`;
+                        document.getElementById('currentLessonDesc').textContent = firstWeek.learning_objectives.join('、');
+                        learningProgress.currentUnit = firstWeek.unit;
+                    }
+                    
+                    alert('🎉 あなた専用のカリキュラムが完成しました！');
+                } else {
+                    throw new Error(result.message || 'カリキュラム作成に失敗しました');
+                }
+            } catch (error) {
+                console.error('カリキュラム作成エラー:', error);
+                alert('カリキュラムの作成中にエラーが発生しました。もう一度試してください。');
+            } finally {
+                hideLoading();
+            }
+        }
+
+        // 学習開始機能
+        async function startLearning() {
+            if (!currentCurriculum || !learningProgress.currentUnit) {
+                alert('まずカリキュラムを設定してください');
+                return;
+            }
+
+            try {
+                showLoading('問題を準備中...');
+                
+                const response = await fetch('/api/problem-generator', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        unit: learningProgress.currentUnit,
+                        difficulty: '基礎',
+                        problemType: '計算問題',
+                        examPrep: document.getElementById('learningGoal').value.includes('受験')
+                    })
+                });
+
+                const result = await response.json();
+                
+                if (result.success && result.problems.problems) {
+                    currentProblem = result.problems.problems[0];
+                    displayProblem(currentProblem);
+                } else {
+                    throw new Error('問題の生成に失敗しました');
+                }
+            } catch (error) {
+                console.error('問題生成エラー:', error);
+                alert('問題の生成中にエラーが発生しました。');
+            } finally {
+                hideLoading();
+            }
+        }
+
+        // 画像アップロード機能
+        function handleFileSelect(event) {
+            const file = event.target.files[0];
+            if (file) {
+                handleFile(file);
+            }
+        }
+
+        function handleFile(file) {
+            if (!file.type.startsWith('image/')) {
+                alert('JPGまたはPNG形式の画像ファイルを選択してください。');
+                return;
+            }
+
+            if (file.size > 10 * 1024 * 1024) {
+                alert('ファイルサイズは10MB以下にしてください。');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                currentImageData = e.target.result;
+                document.getElementById('previewImage').src = currentImageData;
+                document.getElementById('previewContainer').style.display = 'block';
+                document.getElementById('analysisResult').style.display = 'none';
+            };
+            reader.readAsDataURL(file);
+        }
+
+        async function analyzeImage() {
+            if (!currentImageData) {
+                alert('まず画像をアップロードしてください。');
+                return;
+            }
+
+            document.getElementById('loadingSpinner').style.display = 'block';
+            document.getElementById('analysisResult').style.display = 'none';
+
+            try {
+                const base64Data = currentImageData.split(',')[1];
+                const mimeType = currentImageData.split(',')[0].split(':')[1].split(';')[0];
+
+                const response = await fetch('/api/analyze-image', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        imageBase64: base64Data,
+                        mime: mimeType
+                    })
+                });
+
+                const result = await response.json();
+                
+                if (result.success) {
+                    displayAnalysis(result.analysis);
+                    document.getElementById('analysisResult').style.display = 'block';
+                } else {
+                    throw new Error(result.message || '解析に失敗しました');
+                }
+
+            } catch (error) {
+                console.error('画像解析エラー:', error);
+                alert('画像の解析中にエラーが発生しました。もう一度試してください。');
+            } finally {
+                document.getElementById('loadingSpinner').style.display = 'none';
+            }
+        }
+
+        // 表示関数群
+        function displayCurriculum(curriculum) {
+            const display = document.getElementById('curriculumDisplay');
+            let html = `
+                <div style="background: white; padding: 20px; border-radius: 15px; margin: 15px 0;">
+                    <h4>🎯 ${curriculum.curriculum_title || 'あなた専用カリキュラム'}</h4>
+                    <p><strong>到達目標:</strong> ${curriculum.overall_goal || '基礎学力の向上'}</p>
+                    <p><strong>指導方針:</strong> ${curriculum.learning_approach || '段階的な学習で確実に理解を深めます'}</p>
+                </div>
+            `;
+            display.innerHTML = html;
+        }
+
+        function displayProblem(problem) {
+            const container = document.getElementById('problemContainer');
+            container.innerHTML = `
+                <div>
+                    <h4>📝 ${problem.unit || '数学問題'} - ${problem.problem_type || '基礎問題'}</h4>
+                    <div style="font-size: 18px; line-height: 1.6; margin: 20px 0; padding: 20px; background: #f8f9fa; border-radius: 10px;">
+                        ${problem.question || '問題を生成中...'}
+                    </div>
+                    <input type="text" id="answerInput" placeholder="答えを入力してください" 
+                           style="width: 100%; padding: 15px; border: 2px solid #ddd; border-radius: 10px; font-size: 16px; margin: 15px 0;">
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px;">
+                        <button class="btn btn-primary" onclick="checkAnswer()">✓ 答えを確認</button>
+                        <button class="btn btn-secondary" onclick="showHint()">💡 ヒントを見る</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function displayAnalysis(analysis) {
+            const container = document.getElementById('problemsContainer');
+            if (analysis.problems && analysis.problems.length > 0) {
+                const problem = analysis.problems[0];
+                container.innerHTML = `
+                    <div style="background: white; padding: 20px; border-radius: 10px; margin: 15px 0;">
+                        <h4>${problem.topic || '数学問題'}</h4>
+                        <p><strong>問題概要:</strong> ${problem.question_summary || '問題を解析しました'}</p>
+                        <p><strong>第1ヒント:</strong> ${problem.first_hint || '段階的に考えてみましょう'}</p>
+                        <p><strong>励まし:</strong> ${problem.encouragement || '一緒に頑張りましょう！'}</p>
+                    </div>
+                `;
+            }
+        }
+
+        // ユーティリティ関数
+        function showLoading(message) {
+            console.log('Loading:', message);
+        }
+
+        function hideLoading() {
+            console.log('Loading complete');
+        }
+
+        function checkAnswer() {
+            alert('答えの確認機能は実装中です。HeyGenのさくら先生に質問してみてください！');
+        }
+
+        function showHint() {
+            alert('ヒント機能は実装中です。HeyGenのさくら先生に質問してみてください！');
+        }
     </script>
 </body>
 </html>
